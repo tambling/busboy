@@ -1,10 +1,18 @@
-development:
+common: &common
   adapter: postgresql
-  encoding: utf8
-  database: should_i_leave_development
+  username:
+  password:
+  host: localhost
+  timeout: 5000
 
+development:
+  <<: *common
+  database: should_i_leave_dev
 
 test:
-  adapter: postgresql
-  encoding: utf8
+  <<: *common
   database: should_i_leave_test
+
+production:
+  <<: *common
+  database: should_i_leave
