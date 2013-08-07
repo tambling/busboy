@@ -1,7 +1,7 @@
 require 'open-uri'
 class Transit
   def self.get_agencies
-    url = "http://services.my511.org/Transit2.0/GetAgencies.aspx?token="+TOKEN
+    url = "http://services.my511.org/Transit2.0/GetAgencies.aspx?token="+ENV['TOKEN']
     doc = Nokogiri::XML(open(url))
     agencies = []
     doc.xpath('//Agency').each do |element|
@@ -12,7 +12,7 @@ class Transit
 
   def self.get_routes(agency)
     parsed_routes = {}
-    params={token: TOKEN, agencyName: agency}.to_query
+    params={token: ENV['TOKEN'], agencyName: agency}.to_query
     url = "http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?#{params}"
     doc = Nokogiri::XML(open(url))
     routes = doc.xpath('//Route')
@@ -31,7 +31,7 @@ class Transit
     parsed_stops = {}
     routeIDF="#{agency}~#{route}"
     routeIDF += "~#{direction}" if direction
-    params= {token: TOKEN, routeIDF: routeIDF}.to_query
+    params= {token: ENV['TOKEN'], routeIDF: routeIDF}.to_query
     url = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?#{params}"
     doc = Nokogiri::XML(open(url))
     stops = doc.xpath('//Stop')
@@ -45,7 +45,7 @@ class Transit
 
   def self.get_departures(route, stop)
     parsed_departures = []
-    params={token: TOKEN, stopcode: stop}.to_query
+    params={token: ENV['TOKEN'], stopcode: stop}.to_query
     url = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?#{params}"
     doc = Nokogiri::XML(open(url))
     departures = doc.search("//Route[@Code='#{route}']").xpath(".//DepartureTime")
