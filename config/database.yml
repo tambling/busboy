@@ -1,0 +1,18 @@
+common: &common
+  adapter: postgresql
+  username:
+  password:
+  host: localhost
+  timeout: 5000
+
+development:
+  <<: *common
+  database: should_i_leave_dev
+
+test:
+  <<: *common
+  database: should_i_leave_test
+
+production:
+  <<: *common
+  database: should_i_leave
