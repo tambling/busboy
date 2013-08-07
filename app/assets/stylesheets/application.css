@@ -1,0 +1,60 @@
+
+body{
+  background-color: rgba(149, 165, 166,1.0)
+}
+.stay{
+  background-color: #c0392b;
+}
+
+.go{
+  background-color: #2ecc71;
+}
+
+.early{
+  background-color: #f1c40f;
+}
+
+option{
+  text-align: center;
+}
+.options{
+  position: absolute;
+  width: 300px;
+  left: 50%;
+  top: 200px;
+  margin-left: -165px;
+  text-align: center;
+  background-color: rgba(236, 240, 241,0.7);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+#message{
+  font-family: "Helvetica", sans-serif;
+  font-weight: bold;
+  font-size: 3em;
+  color: white;
+
+}
+#routes, #direction, #stops, #distance{
+  display:none;
+  width: 100%;
+}
+
+input{
+  text-align: center;
+  padding: 5px 3px 5px 3px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+#distance{
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.2em;
+
+}
+#explanation{
+  font-family: 'Helvetica', sans-serif;
+  color: white;
+  font-weight: bold;
+}
