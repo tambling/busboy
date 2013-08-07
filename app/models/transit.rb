@@ -49,7 +49,6 @@ class Transit
     url = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?#{params}"
     doc = Nokogiri::XML(open(url))
     departures = doc.search("//Route[@Code='#{route}']").xpath(".//DepartureTime")
-    p departures
     departures.each do |departure|
       parsed_departures << departure.text.to_i
     end
