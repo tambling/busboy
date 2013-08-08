@@ -21,8 +21,9 @@ option{
   position: absolute;
   width: 300px;
   left: 50%;
-  top: 200px;
-  margin-left: -165px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform:translate(-50%,-50%);
   text-align: center;
   background-color: rgba(236, 240, 241,0.7);
   padding: 30px;
