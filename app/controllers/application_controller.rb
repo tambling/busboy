@@ -18,10 +18,9 @@ class ApplicationController < ActionController::Base
   end
 
   def stops
-    agency = params[:agency]
     route = params[:route]
     direction = params[:direction]=="---" ? nil : params[:direction]
-    render :json => Transit.get_stops(agency, route, direction)
+    render :json => Transit.get_stops(route, direction)
   end
 
   def departures

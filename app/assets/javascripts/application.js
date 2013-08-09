@@ -15,7 +15,17 @@ var departures;
 //  }).bind(this),
 // };
 
-var getAgencies= function(){
+var parseSavedSettings = function(){
+  request = $.get('/saved')
+  request.success(function(response){
+    if(response.saved===true){
+      $('#agencies').val(response.agency);
+      $('routes').val()
+    }
+  })
+}
+
+var getAgencies = function(){
   request = $.get('/agencies')
   request.success(function(response){
     parseAgencies(response);
@@ -72,10 +82,9 @@ var parseDirection =function(){
 };
 
 var getStops = function(){
-  agency=$('#agencies').val();
   route = $('#routes').val();
   direction = $('#direction').val()
-  request = $.get('/stops', {agency: agency, route: route, direction: direction});
+  request = $.get('/stops', {route: route, direction: direction});
   request.success(function(response){
     parseStops(response)
     // parseStops(response)
@@ -108,9 +117,9 @@ var parseDepartures = function(){
   $('#distance').css('display','inline');
   distance = Number($('#distance input').val());
   body = $(document).find('body')
+  $('#save').html("<a href='/?saved=true&stop="+$("#stops").val()+"&distance="+distance+"'>Save These Settings</a>")
   adjustedDepartures = _.map(departures, function(time){return Number(time)-distance})
   adjustedDepartures = _.reject(adjustedDepartures, function(time){return Number(time)<1 || Number(time)>=30});
-  console.log(adjustedDepartures)
   if (adjustedDepartures.length==0){
     $(body).removeClass().addClass('stay');
     $('#message').text("STAY.");
@@ -134,6 +143,7 @@ var parseDepartures = function(){
 
 $(document).ready(function(){
   getAgencies();
+  getSavedSettings();
   $('#agencies').change(getRoutes);
   $('#routes').change(parseDirection);
   $('#direction').change(getStops);

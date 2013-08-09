@@ -11,8 +11,9 @@ class Transit
   end
 
   def self.get_routes(agency)
+    @agency = agency
     parsed_routes = {}
-    params={token: ENV['TOKEN'], agencyName: agency}.to_query
+    params={token: ENV['TOKEN'], agencyName: @agency}.to_query
     url = "http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?#{params}"
     doc = Nokogiri::XML(open(url))
     routes = doc.xpath('//Route')
@@ -27,10 +28,12 @@ class Transit
     parsed_routes.to_json
   end
 
-  def self.get_stops(agency, route, direction)
+  def self.get_stops(route, direction)
+    @route = route
+    @direction = direction
     parsed_stops = {}
-    routeIDF="#{agency}~#{route}"
-    routeIDF += "~#{direction}" if direction
+    routeIDF="#{@agency}~#{@route}"
+    routeIDF += "~#{@direction}" if @direction
     params= {token: ENV['TOKEN'], routeIDF: routeIDF}.to_query
     url = "http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?#{params}"
     doc = Nokogiri::XML(open(url))
