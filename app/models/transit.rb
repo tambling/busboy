@@ -46,12 +46,12 @@ class Transit
     parsed_stops.to_json
   end
 
-  def self.get_departures(route, stop)
+  def self.get_departures(stop)
     parsed_departures = []
     params={token: ENV['TOKEN'], stopcode: stop}.to_query
     url = "http://services.my511.org/Transit2.0/GetNextDeparturesByStopCode.aspx?#{params}"
     doc = Nokogiri::XML(open(url))
-    departures = doc.search("//Route[@Code='#{route}']").xpath(".//DepartureTime")
+    departures = doc.search("//Route[@Code='#{@route}']").xpath(".//DepartureTime")
     departures.each do |departure|
       parsed_departures << departure.text.to_i
     end

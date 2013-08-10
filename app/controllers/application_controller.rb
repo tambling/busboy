@@ -24,8 +24,11 @@ class ApplicationController < ActionController::Base
   end
 
   def departures
-    render :json => Transit.get_departures(params[:route], params[:stop])
+    render :json => Transit.get_departures(params[:stop])
   end
 
+  def saved
+    @class='go'
+  end
 
 end
