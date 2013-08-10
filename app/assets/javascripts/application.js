@@ -109,7 +109,7 @@ var parseDepartures = function(){
   $('#distance').css('display','inline');
   distance = Number($('#distance input').val());
   body = $(document).find('body')
-  $('#save').html("<a href='/?saved=true&route="+$('#routes').val()+"&direction="+$('#direction').val()+"&stop="+$("#stops").val()+"&distance="+distance+"'>Save These Settings</a>")
+  $('#save').html("<a class='bookmark' href='/saved?route="+$('#routes').val()+"&stop="+$("#stops").val()+"&distance="+distance+"'>Link To These Settings</a>")
   adjustedDepartures = _.map(departures, function(time){return Number(time)-distance})
   adjustedDepartures = _.reject(adjustedDepartures, function(time){return Number(time)<1 || Number(time)>=30});
   if (adjustedDepartures.length==0){

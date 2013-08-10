@@ -14,9 +14,7 @@ body{
   background-color: #f1c40f;
 }
 
-option{
-  text-align: center;
-}
+
 .options{
   position: absolute;
   width: 300px;
@@ -30,7 +28,7 @@ option{
   border-radius: 20px;
 }
 
-#message{
+#message {
   font-family: "Helvetica", sans-serif;
   font-weight: bold;
   font-size: 3em;
@@ -38,7 +36,7 @@ option{
 
 }
 #routes, #direction, #stops, #distance{
-  display:none;
+  display: none;
   width: 100%;
 }
 
@@ -58,4 +56,22 @@ input{
   font-family: 'Helvetica', sans-serif;
   color: white;
   font-weight: bold;
+}
+.saved{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  position: absolute;
+  width: 500px;
+}
+
+a.bookmark{
+  font-family: 'Helvetica', sans-serif;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  border-radius: 10px;
+  background-color: gray;
+  padding: 3px 10px 3px 10px;
 }

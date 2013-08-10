@@ -1,9 +1,9 @@
-<div style="background-color: <%=@color%>; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); position: absolute; width: 200px;">
-  <h2><%=@advisory%></h2>
+<div class="saved">
+  <h2 id="message"><%=@advisory%></h2>
   <% if @departure %>
-  <p>The <%=@route%> leaves from <%= @stop %> <% @departure %> minutes after you get there.</p>
+  <p id="explanation">The <%=@route_name%> leaves from <%= @stop_name %> <br> <%=@departure %> minutes after you get there.</p>
   <% else %>
-  <p>There aren't any departures in the next half-hour.</p>
+  <p id = "explanation">The <%=@route_name%> doesn't leave from <%= @stop_name %><br> any time in the next half-hour.</p>
   <% end %>
   <%= javascript_tag do %>
     $('body').addClass('<%=@class%>');
