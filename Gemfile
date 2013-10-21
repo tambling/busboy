@@ -44,3 +44,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'nokogiri'
+
+
+# Tryna get that free t-shirt
+gem 'newrelic_rpm'
